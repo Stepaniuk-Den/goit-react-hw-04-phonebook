@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledFilterBar } from './FilterBar.styled';
 
-export default class FilterBar extends Component {
-  handleInputChange = event => {
-    this.props.onFilter(event.target.value);
+export const FilterBar = ({ filter, onFilter }) => {
+  const handleInputChange = event => {
+    onFilter(event.target.value);
   };
-  render() {
-    return (
-      <StyledFilterBar>
-        Find contact by name
-        <input
-          onChange={this.handleInputChange}
-          type="text"
-          name="search"
-          value={this.props.filter}
-        />
-      </StyledFilterBar>
-    );
-  }
-}
+
+  return (
+    <StyledFilterBar>
+      Find contact by name
+      <input
+        onChange={handleInputChange}
+        type="text"
+        name="search"
+        value={filter}
+      />
+    </StyledFilterBar>
+  );
+};
+
 FilterBar.propTypes = {
   filter: PropTypes.string,
   onFilter: PropTypes.func,
